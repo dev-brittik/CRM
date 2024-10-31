@@ -13,10 +13,6 @@
             </h1>
             <span class="text-12px d-none d-md-inline-block"></span>
         </div>
-        <a href="#" target="_blank" class="btn btn-sm pt-0 d-none d-md-inline-block text-14px ">
-            <span>{{ get_phrase('View site') }}</span>
-            <i class="fi-rr-arrow-up-right-from-square text-12px "></i>
-        </a>
     </div>
     <div class="header-content-right d-flex align-items-center justify-content-end">
 

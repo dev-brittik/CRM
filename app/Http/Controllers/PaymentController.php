@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -18,7 +19,6 @@ class PaymentController extends Controller
     public function create()
     {
         $page_data['project_id'] = Project::where('code', request()->query('code'))->value('id');
-        $page_data['user_id']    = get_current_user_role();
         return view('projects.invoice.create', $page_data);
     }
 
@@ -35,10 +35,9 @@ class PaymentController extends Controller
         }
 
         $data['project_id'] = htmlspecialchars($request->project_id);
-        $data['user_id']    = htmlspecialchars($request->user_id);
+        $data['user_id']    = Auth::user()->id;
         $data['title']      = htmlspecialchars($request->title);
         $data['payment']    = htmlspecialchars($request->payment);
-        $data['timestamps'] = date('Y-m-d H:i:s', time());
 
         Payment::insert($data);
         return response()->json([

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Milestone;
+use App\Models\Project;
 use App\Models\Role;
 use App\Models\Task;
 use App\Models\User;
@@ -35,6 +36,15 @@ if (!function_exists('get_current_user_role')) {
         return $role;
     }
 }
+
+if (!function_exists('get_user')) {
+    function get_user($id)
+    {
+        $user = User::where('id', $id)->first();
+        return $user;
+    }
+}
+
 if (!function_exists('get_user_info')) {
     function get_user_info($user_id = "")
     {

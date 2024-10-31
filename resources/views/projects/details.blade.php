@@ -14,14 +14,14 @@
                     <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap flex-md-nowrap">
                         <h4 class="title fs-16px">
                             <i class="fi-rr-settings-sliders me-2"></i>
-                            <span>{{ get_phrase('Project details Static') }}</span>
+                            <span>{{ get_phrase('Project details') }}</span>
                         </h4>
                     </div>
                 </div>
             </div>
             <div class="ol-card">
                 <div class="ol-card-body p-3">
-                    <nav class="navbar navbar-expand-lg">
+                    <nav class="navbar navbar-expand-lg project-details">
                         <ul class="nav nav-underline">
                             <li class="nav-item">
                                 <a class="nav-link @if ($tab == 'dashboard') active @endif"

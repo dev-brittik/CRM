@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,16 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->hasMany(Role::class, 'id', 'role_id');
+    }
+
+    public static function upload_file($image, $path = null)
+    {
+        if ($image) {
+            $image_name = Str::random(20) . '.' . $image->extension();
+            $path       = 'public/uploads/' . $path;
+            $image->move($path, $image_name);
+            return asset($path . '/' . $image_name);
+        }
     }
 
 }

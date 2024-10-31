@@ -27,12 +27,12 @@ $(document).ready(function () {
 
 
     // Select 2
-    if ($select2.length > 0) {
-        var $select = $(".ol-select2").select2({});
-        $($select).each(function () {
-            $(this).data('select2').$dropdown.addClass('select-drop');
-        });
-    }
+    // if ($select2.length > 0) {
+    //     var $select = $(".ol-select2").select2({});
+    //     $($select).each(function () {
+    //         $(this).data('select2').$dropdown.addClass('select-drop');
+    //     });
+    // }
 
 
 

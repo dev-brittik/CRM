@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FileUploader;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +36,10 @@ class UserController extends Controller
                 'validationError' => $validator->getMessageBag()->toArray(),
             ]);
         }
-        $data['role_id']  = htmlspecialchars($request->role_id);
+        // $image = $request->image('image');
+
+        $data['role_id'] = htmlspecialchars($request->role_id);
+        // $data['image']    = FileUploader::upload($image, 'image');
         $data['name']     = htmlspecialchars($request->name);
         $data['email']    = htmlspecialchars($request->email);
         $data['password'] = Hash::make($request->password);

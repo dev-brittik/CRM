@@ -16,6 +16,11 @@ class Project extends Model
         return $this->hasMany(File::class, 'project_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
     public function meetings()
     {
         return $this->hasMany(Meeting::class, 'project_id');

@@ -16,7 +16,8 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('event.create');
+        $page_data['date'] = request()->query('date');
+        return view('event.create', $page_data);
     }
     public function store(Request $request)
     {

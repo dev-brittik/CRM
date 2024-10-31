@@ -97,7 +97,7 @@ class FileController extends Controller
     public function download($id)
     {
         $file      = File::where('id', $id)->first();
-        $file_path = public_path($file->path);
+        $file_path = public_path($file->file);
 
         return Response::download($file_path);
     }

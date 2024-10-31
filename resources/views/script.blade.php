@@ -1,14 +1,12 @@
-<script>
+{{-- <script>
     "use strict";
     document.addEventListener("DOMContentLoaded", function() {
-        // Restore scroll position if it exists in localStorage
         const scrollPos = localStorage.getItem('navScrollPos');
         const sidebarNavArea = document.querySelector('.sidebar-nav-area');
         if (scrollPos) {
             sidebarNavArea.scrollTop = scrollPos;
         }
 
-        // Ensure the active element is visible
         const activeElement = document.querySelector('.sidebar-nav-area .active');
         if (activeElement) {
             const activeElementTop = activeElement.getBoundingClientRect().top;
@@ -20,7 +18,6 @@
             }
         }
 
-        // Save scroll position before page unload
         window.addEventListener('beforeunload', function() {
             localStorage.setItem('navScrollPos', sidebarNavArea.scrollTop);
         });
@@ -29,36 +26,10 @@
     $(document).ready(function() {
         $('.fc .fc-button').removeAttr('disabled');
     });
-</script>
-
-<script>
-    "use strict";
-
-    function showRightModal(url, header) {
-        // SHOWING AJAX PRELOADER IMAGE
-        jQuery('#right-modal .offcanvas-body').html(
-            '<div class="modal-spinner-border"><div class="spinner-border text-secondary" role="status"></div></div>'
-        );
-        jQuery('#right-modal .offcanvas-title').html("Loading...");
-        // LOADING THE AJAX MODAL
+</script> --}}
 
 
-        const bsOffcanvas = new bootstrap.Offcanvas('#right-modal');
-        bsOffcanvas.show();
-
-        // SHOW AJAX RESPONSE ON REQUEST SUCCESS
-        $.ajax({
-            url: url,
-            success: function(response) {
-                jQuery('#right-modal .offcanvas-title').html(header);
-                jQuery('#right-modal .offcanvas-body').html(response);
-
-            }
-        });
-    }
-</script>
-
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     "use strict";
 
     function ajaxModal(url, title, modalClasses = 'modal-md', animation = 'fade') {
@@ -92,34 +63,30 @@
     })
 
 
+    function showRightModal(url, header) {
+        jQuery('#right-modal .offcanvas-body').html(
+            '<div class="modal-spinner-border"><div class="spinner-border text-secondary" role="status"></div></div>'
+        );
+        jQuery('#right-modal .offcanvas-title').html("Loading...");
 
-    // function confirmModal(url, elem = false, actionType = null, content = null) {
-    //     $("#confirmModal").modal('show');
+        const bsOffcanvas = new bootstrap.Offcanvas('#right-modal');
+        bsOffcanvas.show();
 
-    //     if (elem != false) {
-    //         $.ajax({
-    //             url: url,
-    //             success: function(response) {
-    //                 response = JSON.parse(response);
-    //                 //For redirect to another url
-    //                 if (typeof response.success != "undefined") {
-    //                     window.location.href = response.success;
-    //                 }
-    //                 distributeServerResponse(response);
-    //             }
-    //         });
-    //     } else {
-    //         $('#confirmModal .confirm-btn').attr('href', url);
-    //         $('#confirmModal .confirm-btn').removeAttr('onclick');
-    //     }
-    // }
-</script>
+        $.ajax({
+            url: url,
+            success: function(response) {
+                jQuery('#right-modal .offcanvas-title').html(header);
+                jQuery('#right-modal .offcanvas-body').html(response);
 
-<script type="text/javascript">
+            }
+        });
+    }
+</script> --}}
+
+{{-- <script type="text/javascript">
     "use strict";
 
     $(function() {
-        //The form of submission to RailTeam js is defined here.(Form class or ID)
         $('.aiAjaxFormSubmission').ajaxForm({
             beforeSend: function() {
                 $('#aiSubmissionBtn').html("Generating");
@@ -164,53 +131,12 @@
                 $('#aiSubmissionBtn').attr('disabled', false);
             },
             error: function() {
-                //You can write here your js error message
+
             }
         });
     });
+</script> --}}
 
-    function copy_text(e) {
-        // Get the text field
-        var copyText = document.getElementById("generatedAiText");
-        console.log(copyText);
-
-        // Select the text field
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
-
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
-
-        $(e).html('<i class="far fa-copy"></i> Copied!')
-    }
-</script>
-
-<script>
-    "use strict";
-
-    function toaster_message(type, icon, header, message) {
-        var toasterMessage = '<div class="toast ' + type +
-            ' fade" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header"> <i class="' +
-            icon + ' me-2 mt-2px text-20px"></i> <strong class="me-auto"> ' + header +
-            ' </strong><small>Just Now</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body">' +
-            message + '</div></div>';
-        $('.toast-container').prepend(toasterMessage);
-        const toast = new bootstrap.Toast('.toast')
-        toast.show()
-    }
-
-    function success(message) {
-        toaster_message('success', 'fi-sr-badge-check', 'Success !', message);
-    }
-
-    function warning(message) {
-        toaster_message('warning', 'fi-sr-exclamation', 'Attention !', message);
-    }
-
-    function error(message) {
-        toaster_message('error', 'fi-sr-triangle-warning', 'An Error Occurred !', message);
-    }
-</script>
 
 <script>
     "use strict";
@@ -391,7 +317,6 @@
         // Get the table element as HTML
         const table = document.querySelector(elem);
 
-        // Options for html2pdf
         const options = {
             margin: 0.5,
             filename: fileName,
@@ -419,36 +344,26 @@
     }
 
     function downloadTableAsCSV(elem, filename = 'data.csv') {
-        // Select the table element
         var table = document.querySelector(elem);
-
-        // Initialize CSV string
         var csv = [];
 
-        // Iterate over table rows
         var rows = table.rows;
         for (var i = 0; i < rows.length; i++) {
             var row = [],
                 cols = rows[i].cells;
 
-            // Iterate over table cells
             for (var j = 0; j < cols.length; j++) {
                 row.push(cols[j].innerText);
             }
 
-            // Join the row elements with commas
             csv.push(row.join(','));
         }
 
-        // Join the rows with newline character
         var csvData = csv.join('\n');
-
-        // Create a Blob object containing the CSV data
         var blob = new Blob([csvData], {
             type: 'text/csv'
         });
 
-        // Create a temporary link to trigger the download
         var link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.download = filename + '.csv';
@@ -456,214 +371,35 @@
         link.trigger('click');
         document.body.removeChild(link);
     }
-</script>
-<script type="text/javascript">
-    "use strict";
-
-    $(function() {
-        // Datatable
-        if ($('#datatable:not(.inited)').length) {
-            $('#datatable:not(.inited)').DataTable();
-            $('#datatable:not(.inited)').addClass('inited');
-
-            $('#spinnner-before-table').addClass('d-none');
-            $('.table-responsive').removeClass('d-none');
-        }
-
-        // Date range picker
-        if ($('.daterangepicker:not(.inited)').length) {
-            $('.daterangepicker:not(.inited)').daterangepicker();
-            $('.daterangepicker:not(.inited)').addClass('inited');
-        }
-
-        // icon picker
-        if ($('.icon-picker:not(.inited)').length) {
-            $('.icon-picker:not(.inited)').iconpicker();
-            $('.icon-picker:not(.inited)').addClass('inited');
-        }
-
-        //Select 2
-        if ($('#ajaxModal select.ol-select2:not(.inited)').length) {
-            $('#ajaxModal select.ol-select2:not(.inited)').select2({
-                dropdownParent: $('#ajaxModal')
-            });
-            $('#ajaxModal select.ol-select2:not(.inited)').addClass('inited');
-        }
-        if ($('#right-modal select.ol-select2:not(.inited)').length) {
-            $('#right-modal select.ol-select2:not(.inited)').select2({
-                dropdownParent: $('#right-modal')
-            });
-            $('#right-modal select.ol-select2:not(.inited)').addClass('inited');
-        }
-        if ($('select.ol-select2:not(.inited)').length) {
-            $('select.ol-select2:not(.inited)').select2();
-            $('select.ol-select2:not(.inited)').addClass('inited');
-        }
-
-        if ($('#ajaxModal select.select2:not(.inited)').length) {
-            $('#ajaxModal select.select2:not(.inited)').select2({
-                dropdownParent: $('#ajaxModal')
-            });
-            $('#ajaxModal select.select2:not(.inited)').addClass('inited');
-        }
-        if ($('#right-modal select.select2:not(.inited)').length) {
-            $('#right-modal select.select2:not(.inited)').select2({
-                dropdownParent: $('#right-modal')
-            });
-            $('#right-modal select.select2:not(.inited)').addClass('inited');
-        }
-        if ($('select.select2:not(.inited)').length) {
-            $('select.select2:not(.inited)').select2();
-            $('select.select2:not(.inited)').addClass('inited');
-        }
-
-        //Text editor
-        if ($('.text_editor:not(.inited)').length) {
-            $('.text_editor:not(.inited)').summernote({
-                height: 180, // set editor height
-                minHeight: null, // set minimum height of editor
-                maxHeight: null, // set maximum height of editor
-                focus: true, // set focus to editable area after initializing summernote
-                toolbar: [
-                    ['color', ['color']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontsize', ['fontsize']],
-                    ['para', ['ul', 'ol']],
-                    ['table', ['table']],
-                    ['insert', ['link']]
-                ]
-            });
-            $('.text_editor:not(.inited)').addClass('inited');
-        }
-        //summary, note_for_student, short_description, message, biography, type-msg, id="comment", summernote, address, website_description
-
-
-        $('.tagify:not(.inited)').each(function(index, element) {
-            var tagify = new Tagify(element, {
-                placeholder: 'Enter your keywords'
-            });
-            $(element).addClass('inited');
-        });
-
-        var formElement;
-        if ($('.ajaxForm:not(.initialized)').length > 0) {
-            $('.ajaxForm:not(.initialized)').ajaxForm({
-                beforeSend: function(data, form) {
-                    var formElement = $(form);
-                },
-                uploadProgress: function(event, position, total, percentComplete) {},
-                complete: function(xhr) {
-
-                    setTimeout(function() {
-                        distributeServerResponse(xhr.responseText);
-                    }, 400);
-
-                    if ($('.ajaxForm.resetable').length > 0) {
-                        $('.ajaxForm.resetable')[0].reset();
-                    }
-                },
-                error: function(e) {
-                    console.log(e);
-                }
-            });
-            $('.ajaxForm:not(.initialized)').addClass('initialized');
-        }
-    });
-
-
 
     function printDiv(divId) {
         var printContents = document.getElementById(divId).outerHTML;
         var originalContents = document.body.innerHTML;
-
         document.body.innerHTML = printContents;
-
         window.print();
-
         document.body.innerHTML = originalContents;
+    }
+
+    function copy_text(e) {
+        var copyText = document.getElementById("generatedAiText");
+        console.log(copyText);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        $(e).html('<i class="far fa-copy"></i> Copied!')
     }
 </script>
 
 
-<script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendors/chart-js/chart.js"></script>
 
-
-
-<script>
-    "use strict";
-
-    const xValues = [0, "January", "February", "March", "April", "May", "June", "July", "August", "September",
-        "October", "November", "December"
-    ];
-    new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                label: "Admin Revenue",
-                fill: false,
-                lineTension: 0,
-                backgroundColor: "rgba(0,0,255,1.0)",
-                borderColor: "rgba(0,0,255,0.1)",
-                data: [0, 0, 0, 0, 0, 1302.912, 0, 0, 0, 0, 0, 0, 0]
-            }]
-        },
-        options: {
-            legend: {
-                display: true
-            },
-        }
-    });
-
-
-    // Pie Chart 2
-    const project_progress2 = document.getElementById('pie2');
-    const progressData2 = {
-        labels: ['Active', 'Upcoming', 'Pending', 'Private', 'Draft', 'Inactive'],
-        data: [8, 1, 0, 0, 0, 0],
-    };
-    var barColors = [
-        "#12c093",
-        "#1b84ff",
-        "#ff2583",
-        "#000",
-        "#878d97",
-        "#dadada",
-    ];
-    new Chart(project_progress2, {
-        type: 'doughnut',
-        data: {
-            labels: progressData2.labels,
-            datasets: [{
-                backgroundColor: barColors,
-                label: ' Courses',
-                data: progressData2.data,
-            }, ],
-        },
-        options: {
-            responsive: true,
-            borderWidth: 5,
-            hoverBorderColor: '#fff',
-            plugins: {
-                legend: {
-                    display: false,
-                },
-            },
-        },
-    });
-</script>
-
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     "use strict";
 
     let blank_faq = jQuery('#blank_faq_field').html();
     let blank_motivational_speech = jQuery('#blank_motivational_speech_field').html();
     $(document).ready(function() {
-
         jQuery('#blank_faq_field').hide();
         jQuery('#blank_motivational_speech_field').hide();
-
     });
 
     function appendFaq() {
@@ -680,5 +416,55 @@
 
     function removeMotivational_speech(faqElem) {
         jQuery(faqElem).parent().parent().remove();
+    }
+</script> --}}
+
+
+{{-- new scripts for this project --}}
+<script>
+    function processServerResponse(response) {
+        if (response.success) {
+            success(response.success)
+        }
+
+        if (response.error) {
+            error(response.error)
+        }
+
+        if (response.loadScript) {
+            alert(response.loadScript)
+        }
+
+        if (response.validationError) {
+            error(JSON.stringify(response.validationError))
+        }
+
+        const selector = response.loadTable ?? 'table.table';
+        $(selector).load(location.href + ' ' + selector)
+    }
+
+    // When the "Select All" checkbox is changed
+    $(document).on('change', '#select-all', function() {
+        $('.checkbox-item').prop('checked', this.checked);
+        toggleDeleteButton();
+    });
+
+    // When any checkbox item is changed
+    $(document).on('change', '.checkbox-item', function() {
+        if ($('.checkbox-item:checked').length === $('.checkbox-item').length) {
+            $('#select-all').prop('checked', true);
+        } else {
+            $('#select-all').prop('checked', false);
+        }
+        toggleDeleteButton();
+    });
+
+    // Function to toggle delete button visibility
+    function toggleDeleteButton() {
+        if ($('.checkbox-item:checked').length > 0) {
+            $('#delete-selected').removeClass('d-none');
+        } else {
+            $('#delete-selected').addClass('d-none');
+        }
     }
 </script>

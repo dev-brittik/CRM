@@ -32,11 +32,11 @@ class ProjectController extends Controller
         $user = Auth::user();
 
         if (get_current_user_role() == 'client') {
-            $page_data['projects'] = Project::where('client_id', $user->id)->get();
+            $page_data['projects'] = Project::with('user')->where('client_id', $user->id)->get();
         } elseif (get_current_user_role() == 'staff') {
-            $page_data['projects'] = Project::whereJsonContains('staffs', (string) $user->id)->get();
+            $page_data['projects'] = Project::with('user')->whereJsonContains('staffs', (string) $user->id)->get();
         } else {
-            $page_data['projects'] = Project::all();
+            $page_data['projects'] = Project::with('user')->get();
         }
 
         return view('projects.index', $page_data);
@@ -44,10 +44,6 @@ class ProjectController extends Controller
 
     public function show()
     {
-        // $tasks          = Milestone::where('id', 1)->value('tasks');
-        // $total_progress = Task::whereIn('id', $tasks)->sum('progress');
-        // $count_tasks    = Task::whereIn('id', $tasks)->count();
-        // dd($total_progress, $count_tasks);
 
         $page_data['files']      = File::where('project_id', $this->project->id)->get();
         $page_data['milestones'] = Milestone::where('project_id', $this->project->id)->get();
@@ -157,9 +153,9 @@ class ProjectController extends Controller
 
     public function multiDelete(Request $request)
     {
-        $codes = $request->input('data');
-        if (!empty($codes)) {
-            Project::whereIn('code', $codes)->delete();
+        $code = $request->input('data');
+        if (!empty($code)) {
+            Project::whereIn('code', $code)->delete();
             return response()->json(['success' => 'Project deleted successfully!']);
         }
 

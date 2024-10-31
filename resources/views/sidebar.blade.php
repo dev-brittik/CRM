@@ -94,8 +94,7 @@
     <div class="sidebar-nav-area">
         <nav class="sidebar-nav">
             <ul class="px-14px pb-24px">
-
-                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.dashboard ') active showMenu @endif">
+                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.dashboard') active showMenu @endif">
                     <a href="{{ route(get_current_user_role() . '.dashboard') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +113,11 @@
                 </li>
 
 
-                <li class="sidebar-first-li @if ($current_route == 'projects') active showMenu @endif ">
+                <li class="sidebar-first-li @if (
+                    $current_route == get_current_user_role() . '.projects' ||
+                        $current_route == get_current_user_role() . '.project.create' ||
+                        $current_route == get_current_user_role() . '.project.edit' ||
+                        $current_route == get_current_user_role() . '.project.details') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.projects') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +141,10 @@
                     </a>
                 </li>
 
-                <li class="sidebar-first-li @if ($current_route == 'users') active showMenu @endif ">
+                <li class="sidebar-first-li @if (
+                    $current_route == get_current_user_role() . '.users' ||
+                        $current_route == get_current_user_role() . '.user.create' ||
+                        $current_route == get_current_user_role() . '.user.edit') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.users') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +167,10 @@
                     </a>
                 </li>
 
-                <li class="sidebar-first-li @if ($current_route == 'roles') active showMenu @endif ">
+                <li class="sidebar-first-li @if (
+                    $current_route == get_current_user_role() . '.roles' ||
+                        $current_route == get_current_user_role() . '.role.create' ||
+                        $current_route == get_current_user_role() . '.role.edit') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.roles') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -195,7 +204,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="sidebar-first-li @if ($current_route == 'permissions') active showMenu @endif ">
+                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.permissions') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.permissions') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +226,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="sidebar-first-li @if ($current_route == 'events') active showMenu @endif ">
+                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.events') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.events') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -248,7 +257,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="sidebar-first-li @if ($current_route == 'message') active showMenu @endif ">
+                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.message') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.message') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -264,7 +273,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="sidebar-first-li @if ($current_route == 'reports') active showMenu @endif ">
+                <li class="sidebar-first-li @if ($current_route == get_current_user_role() . '.reports') active showMenu @endif ">
                     <a href="{{ route(get_current_user_role() . '.reports') }}">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
