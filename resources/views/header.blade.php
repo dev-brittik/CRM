@@ -1,10 +1,17 @@
 @php
-    $role = App\Models\Role::where('id', auth()->user()->role_id)->first();
+    $my_data = auth()->user();
 @endphp
 <div class="ol-header print-d-none d-flex align-items-center justify-content-between py-2 ps-3">
     <div class="header-title-menubar d-flex align-items-center">
         <button class="menu-toggler sidebar-plus">
-            <span class="fi-rr-menu-burger"></span>
+            <span>
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6.86621H13" stroke="#99A1B7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M20 12.8662H11" stroke="#99A1B7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M20 18.8662H13" stroke="#99A1B7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M8 8.86621L4 12.8662L8 16.8662" stroke="#99A1B7" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
         </button>
 
         <div class="main-header-title">
@@ -52,12 +59,9 @@
 
 
 
-        <a href="#" class="list text-18px d-inline-flex" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <a href="#" class="list text-18px d-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             <span class="d-block h-100 w-100" data-bs-toggle="tooltip" data-bs-placement="bottom" title="AI Assistant">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    width="22" height="22" x="0" y="0" viewBox="0 0 64 64"
-                    style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                     <g>
                         <g fill="#424242">
                             <path
@@ -70,10 +74,8 @@
         </a>
 
 
-        <div class="dropdown ol-icon-dropdown ol-icon-dropdown-transparent" data-bs-toggle="tooltip"
-            data-bs-placement="bottom" title="Help center">
-            <button class="btn ol-btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+        <div class="dropdown ol-icon-dropdown ol-icon-dropdown-transparent" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Help center">
+            <button class="btn ol-btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fi-rr-messages-question text-20px"></i>
             </button>
 
@@ -89,8 +91,7 @@
                 </li>
 
                 <li>
-                    <a href="https://www.youtube.com/watch?v=-HHhJUGQPeU&list=PLR1GrQCi5Zqvhh7wgtt-ShMAM1RROYJgE"
-                        target="_blank" class="dropdown-item">
+                    <a href="https://www.youtube.com/watch?v=-HHhJUGQPeU&list=PLR1GrQCi5Zqvhh7wgtt-ShMAM1RROYJgE" target="_blank" class="dropdown-item">
                         <i class="fi-rr-video-arrow-up-right"></i>
                         <span>Watch video tutorial</span>
                     </a>
@@ -117,8 +118,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://creativeitem.com/services" target="_blank"
-                        class="text-premium select-text text-capitalize d-flex align-items-center">
+                    <a href="https://creativeitem.com/services" target="_blank" class="text-premium select-text text-capitalize d-flex align-items-center">
                         <i class="fi-rr-settings-sliders me-1"></i>
                         <span>Get Services</span>
                         <i class="fi-rr-crown ms-auto"></i>
@@ -132,30 +132,27 @@
         <div class="header-dropdown-md">
             <button class="header-dropdown-toggle-md" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="user-profile-sm">
-                    <img src="{{ asset('assets/images/img/message-profile-3.svg') }}" alt="">
+                    <img src="{{ get_image($my_data->photo) }}" alt="">
                 </div>
             </button>
             <div class="header-dropdown-menu-md p-3">
                 <div class="d-flex column-gap-2 mb-12px pb-12px ol-border-bottom-2">
                     <div class="user-profile-sm">
-                        <img src="{{ asset('assets/images/img/message-profile-3.svg') }}" alt="">
+                        <img src="{{ get_image($my_data->photo) }}" alt="">
                     </div>
                     <div>
-                        <h6 class="title fs-12px mb-2px">John Doe</h6>
+                        <h6 class="title fs-12px mb-2px">{{ $my_data->name }}</h6>
                         <p class="sub-title fs-12px">Admin</p>
                     </div>
                 </div>
                 <ul class="mb-12px pb-12px ol-border-bottom-2">
-                    <li class="dropdown-list-1"><a class="dropdown-item-1"
-                            href="#manage_profile">{{ get_phrase('My Profile') }}</a>
+                    <li class="dropdown-list-1"><a class="dropdown-item-1" href="#manage_profile">{{ get_phrase('My Profile') }}</a>
                     </li>
-                    <li class="dropdown-list-1"><a class="dropdown-item-1"
-                            href="#system_settings">{{ get_phrase('Settings') }}</a>
+                    <li class="dropdown-list-1"><a class="dropdown-item-1" href="#system_settings">{{ get_phrase('Settings') }}</a>
                     </li>
                 </ul>
                 <form action="{{ route('logout') }}" method="post">@csrf
-                    <button type="submit"
-                        class="dropdown-item-1 bg-transparent d-inline-flex">{{ get_phrase('Sign Out') }}</button>
+                    <button type="submit" class="dropdown-item-1 bg-transparent d-inline-flex">{{ get_phrase('Sign Out') }}</button>
                 </form>
             </div>
         </div>

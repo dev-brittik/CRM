@@ -81,6 +81,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         Route::get('user/delete/{id}', 'delete')->name('user.delete');
         Route::get('user/edit/{id}', 'edit')->name('user.edit');
         Route::post('user/update/{id}', 'update')->name('user.update');
+        Route::post('user/multi-delete', 'multiDelete')->name('user.multi-delete');
 
     });
 

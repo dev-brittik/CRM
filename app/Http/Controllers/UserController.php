@@ -36,13 +36,12 @@ class UserController extends Controller
                 'validationError' => $validator->getMessageBag()->toArray(),
             ]);
         }
-        // $image = $request->image('image');
-
-        $data['role_id'] = htmlspecialchars($request->role_id);
-        // $data['image']    = FileUploader::upload($image, 'image');
-        $data['name']     = htmlspecialchars($request->name);
-        $data['email']    = htmlspecialchars($request->email);
+        $file             = $request->file('photo');
+        $data['role_id']  = $request->role_id;
+        $data['name']     = $request->name;
+        $data['email']    = $request->email;
         $data['password'] = Hash::make($request->password);
+        $data['photo']    = FileUploader::upload($file, 'user_photos');
 
         User::insert($data);
         return response()->json([
@@ -59,12 +58,26 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $file_record = User::find($id);
 
-        $data['name']  = htmlspecialchars($request->name);
-        $data['email'] = htmlspecialchars($request->email);
+        if (!$file_record) {
+            return response()->json([
+                'error' => 'User record not found.',
+            ], 404);
+        }
 
-        User::where('id', $request->id)->update($data);
+        $file          = $request->file('photo');
+        $data['name']  = $request->name;
+        $data['email'] = $request->email;
+        if ($file) {
+            $oldFilePath = public_path($file_record->photo);
+            if (file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+            $data['photo'] = FileUploader::upload($file, 'user_photos');
+        }
 
+        $file_record->update($data);
         return response()->json([
             'success' => 'User has been updated.',
         ]);
@@ -72,9 +85,35 @@ class UserController extends Controller
 
     public function delete($id)
     {
+        $file_record = User::find($id);
+
+        if (!$file_record) {
+            return response()->json([
+                'error' => 'User record not found.',
+            ], 404);
+        }
+
+        $filePath = public_path($file_record->photo);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $file_record->delete();
+
         User::where('id', $id)->delete();
         return response()->json([
             'success' => 'User has been deleted.',
         ]);
+    }
+
+    public function multiDelete(Request $request)
+    {
+        $ids = $request->input('data');
+
+        if (!empty($ids)) {
+            User::whereIn('id', $ids)->delete();
+            return response()->json(['success' => 'Users deleted successfully!']);
+        }
+
+        return response()->json(['error' => 'No users selected for deletion.'], 400);
     }
 }

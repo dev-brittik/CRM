@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@push('title', get_phrase('Projects'))
+@push('meta')@endpush
+@push('css')@endpush
 
 @section('content')
     <div class="ol-card radius-8px print-d-none">
@@ -93,6 +96,7 @@
 
 @push('js')
     <script>
+        "use strict";
         $(document).ready(function() {
             // Initialize context menu
             $.contextMenu({

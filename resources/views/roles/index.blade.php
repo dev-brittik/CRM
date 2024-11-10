@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@push('title', get_phrase('Roles'))
 
 @section('content')
     <div class="ol-card radius-8px print-d-none">
@@ -8,8 +9,7 @@
                     <i class="fi-rr-settings-sliders me-2"></i>
                     {{ 'Manage role' }}
                 </h4>
-                <button onclick="rightCanvas('{{ route(get_current_user_role() . '.roles.create') }}', 'Create role')"
-                    class="btn ol-btn-outline-secondary d-flex align-items-center cg-10px">
+                <button onclick="rightCanvas('{{ route(get_current_user_role() . '.roles.create') }}', 'Create role')" class="btn ol-btn-outline-secondary d-flex align-items-center cg-10px">
                     <span class="fi-rr-plus"></span>
                     <span>{{ get_phrase('Add new') }}</span>
                 </button>
@@ -32,12 +32,9 @@
 
                             @foreach ($permissions as $permission)
                                 <div class="form-check form-check-radio">
-                                    <input type="checkbox" id="{{ $role->id }}-{{ $permission->id }}"
-                                        class="form-check-input" @if (in_array($permission->id, $assigned_permissions)) checked @endif
-                                        onchange="ajaxCall('{{ route(get_current_user_role() . '.store.permissions', [$role->id, $permission->id]) }}')">
+                                    <input type="checkbox" id="{{ $role->id }}-{{ $permission->id }}" class="form-check-input" @if (in_array($permission->id, $assigned_permissions)) checked @endif onchange="ajaxCall('{{ route(get_current_user_role() . '.store.permissions', [$role->id, $permission->id]) }}')">
 
-                                    <label class="form-check-label-checkbox text-capitalize sub-title fw-medium w-100"
-                                        for="{{ $role->id }}-{{ $permission->id }}">{{ $permission->title }}</label>
+                                    <label class="form-check-label-checkbox text-capitalize sub-title fw-medium w-100" for="{{ $role->id }}-{{ $permission->id }}">{{ $permission->title }}</label>
                                 </div>
                             @endforeach
                         </div>

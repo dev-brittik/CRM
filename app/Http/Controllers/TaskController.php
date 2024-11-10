@@ -43,10 +43,10 @@ class TaskController extends Controller
             ]);
         }
 
-        $data['project_id'] = htmlspecialchars($request->project_id);
-        $data['title']      = htmlspecialchars($request->title);
-        $data['status']     = htmlspecialchars($request->status);
-        $data['progress']   = htmlspecialchars($request->progress);
+        $data['project_id'] = $request->project_id;
+        $data['title']      = $request->title;
+        $data['status']     = $request->status;
+        $data['progress']   = $request->progress;
         $data['team']       = json_encode($request->team);
         $data['start_date'] = strtotime($request->start_date);
         $data['end_date']   = strtotime($request->end_date);
@@ -89,9 +89,9 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
 
-        $project['title']      = htmlspecialchars($request->title);
-        $project['status']     = htmlspecialchars($request->status);
-        $project['progress']   = htmlspecialchars($request->progress);
+        $project['title']      = $request->title;
+        $project['status']     = $request->status;
+        $project['progress']   = $request->progress;
         $project['team']       = json_encode($request->team);
         $project['start_date'] = strtotime($request->start_date);
         $project['end_date']   = strtotime($request->end_date);

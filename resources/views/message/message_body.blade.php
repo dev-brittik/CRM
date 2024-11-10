@@ -2,8 +2,7 @@
     <div class="messenger-header d-flex align-items-center justify-content-between">
         <div class="user-wrap d-flex align-items-center">
             <div class="profile">
-                <img src="" alt="">
-                {{-- <img src="{{ get_image($thread_details->user->photo) }}" alt=""> --}}
+                <img src="{{ get_image($thread_details->user->photo) }}" alt="">
             </div>
             <div class="name-status">
                 <h6 class="name">{{ $thread_details->user->name }}</h6>
@@ -24,8 +23,7 @@
                     <div class="single-message recipient-user">
                         <div class="user-wrap mb-3 d-flex align-items-center">
                             <div class="profile">
-                                <img src="" alt="">
-                                {{-- <img src="{{ get_image($my_data->photo) }}" alt=""> --}}
+                                <img src="{{ get_image($my_data->photo) }}" alt="">
                             </div>
                             <div class="name-time d-flex align-items-center flex-wrap">
                                 <h6 class="name">{{ $my_data->name }}</h6>
@@ -40,8 +38,7 @@
                     <div class="single-message ">
                         <div class="user-wrap mb-3 d-flex align-items-center">
                             <div class="profile">
-                                <img src="" alt="">
-                                {{-- <img src="{{ get_image($thread_details->user->photo) }}" alt=""> --}}
+                                <img src="{{ get_image($thread_details->user->photo) }}" alt="">
                             </div>
                             <div class="name-time d-flex align-items-center flex-wrap">
                                 <h6 class="name">{{ $thread_details->user->name }}</h6>
@@ -55,16 +52,14 @@
         @endforeach
     </ul>
     <div class="messenger-footer">
-        <form action="{{ route(get_current_user_role() . '.message.store') }}" method="post"
-            enctype="multipart/form-data">
+        <form action="{{ route(get_current_user_role() . '.message.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="sender_id" value="{{ $my_data->id }}">
             <input type="hidden" name="receiver_id" value="{{ $thread_details->user->id }}">
             <input type="hidden" name="thread_id" value="{{ $thread_details->id }}">
 
             <div class="messenger-footer-inner d-flex align-items-center">
-                <input type="search" name="message" class="form-control form-control-message"
-                    placeholder="Type your message here...">
+                <input type="search" name="message" class="form-control form-control-message" placeholder="Type your message here...">
 
                 <button type="submit" class="btn ol-btn-primary d-flex align-items-center cg-10px">
                     <span class="fi-rr-rocket"></span>

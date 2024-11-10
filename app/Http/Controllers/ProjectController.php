@@ -88,17 +88,17 @@ class ProjectController extends Controller
             ], 422);
         }
 
-        $project['title']           = htmlspecialchars($request->title);
+        $project['title']           = $request->title;
         $project['code']            = Str::random(6);
-        $project['description']     = htmlspecialchars($request->description);
-        $project['category_id']     = htmlspecialchars($request->category_id);
-        $project['client_id']       = htmlspecialchars($request->client_id);
+        $project['description']     = $request->description;
+        $project['category_id']     = $request->category_id;
+        $project['client_id']       = $request->client_id;
         $project['staffs']          = json_encode($request->staffs);
-        $project['budget']          = htmlspecialchars($request->budget);
-        $project['progress']        = htmlspecialchars($request->progress);
-        $project['status']          = htmlspecialchars($request->status);
-        $project['note']            = htmlspecialchars($request->note);
-        $project['privacy']         = htmlspecialchars($request->privacy);
+        $project['budget']          = $request->budget;
+        $project['progress']        = $request->progress;
+        $project['status']          = $request->status;
+        $project['note']            = $request->note;
+        $project['privacy']         = $request->privacy;
         $project['timestamp_start'] = date('Y-m-d', time());
         $project['timestamp_end']   = date('Y-m-d', time());
 
@@ -131,16 +131,16 @@ class ProjectController extends Controller
 
     public function update(Request $request, $code)
     {
-        $project['title']           = htmlspecialchars($request->title);
-        $project['description']     = htmlspecialchars($request->description);
-        $project['category_id']     = htmlspecialchars($request->category_id);
-        $project['client_id']       = htmlspecialchars($request->client_id);
+        $project['title']           = $request->title;
+        $project['description']     = $request->description;
+        $project['category_id']     = $request->category_id;
+        $project['client_id']       = $request->client_id;
         $project['staffs']          = json_encode($request->staffs);
-        $project['budget']          = htmlspecialchars($request->budget);
-        $project['progress']        = htmlspecialchars($request->progress);
-        $project['status']          = htmlspecialchars($request->status);
-        $project['note']            = htmlspecialchars($request->note);
-        $project['privacy']         = htmlspecialchars($request->privacy);
+        $project['budget']          = $request->budget;
+        $project['progress']        = $request->progress;
+        $project['status']          = $request->status;
+        $project['note']            = $request->note;
+        $project['privacy']         = $request->privacy;
         $project['timestamp_start'] = date('Y-m-d H:i:s', time());
         $project['timestamp_end']   = date('Y-m-d H:i:s', time());
 

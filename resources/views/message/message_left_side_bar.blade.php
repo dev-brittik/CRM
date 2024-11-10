@@ -12,10 +12,7 @@
             ->orderBy('id', 'desc')
             ->get();
     } else {
-        $my_threads = App\Models\MessageThread::where('contact_one', $my_id)
-            ->orWhere('contact_two', $my_id)
-            ->orderBy('id', 'desc')
-            ->get();
+        $my_threads = App\Models\MessageThread::where('contact_one', $my_id)->orWhere('contact_two', $my_id)->orderBy('id', 'desc')->get();
     }
 
 @endphp
@@ -25,11 +22,9 @@
         $number_of_unread_message = $thread->messages()->where('read', '!=', 1)->count();
     @endphp
     <li>
-        <a href="{{ route(get_current_user_role() . '.message', ['message_thread' => $thread->code]) }}"
-            class="message-sidebar-message @if ($thread_code == $thread->code) active @endif">
+        <a href="{{ route(get_current_user_role() . '.message', ['message_thread' => $thread->code]) }}" class="message-sidebar-message @if ($thread_code == $thread->code) active @endif">
             <div class="user">
-                <img src="" alt="">
-                {{-- <img src="{{ get_image($thread->user->photo) }}" alt=""> --}}
+                <img src="{{ get_image($thread->user->photo) }}" alt="">
             </div>
             <div class="details d-flex justify-content-between">
                 <div class="name-message">

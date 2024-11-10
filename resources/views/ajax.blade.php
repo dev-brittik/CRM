@@ -1,4 +1,5 @@
 <script>
+    "use strict";
     $(document).ready(function() {
         // Set up the CSRF token for AJAX requests
         $.ajaxSetup({

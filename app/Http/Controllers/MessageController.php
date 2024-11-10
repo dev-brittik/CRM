@@ -74,7 +74,7 @@ class MessageController extends Controller
     public function searchThreads(Request $request)
     {
         $user_id_arr = array();
-        $user_id     = $request->user()->id; // Assuming you're using Laravel's authentication
+        $user_id     = $request->user()->id;
         $search      = $request->input('search');
 
         $users = User::where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->limit(50)->get();

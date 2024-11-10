@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@push('title', get_phrase('Dashboard'))
+
 @section('content')
     <div class="row">
         <div class="col-12">

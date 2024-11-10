@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@push('title', get_phrase('Private Message'))
+@push('title', get_phrase('Message'))
 @push('meta')@endpush
 @push('css')@endpush
 @section('content')
@@ -11,9 +11,7 @@
                         <div class="back-title d-flex align-items-center">
                             <p class="title fs-16px">{{ get_phrase('Chat List') }}</p>
                         </div>
-                        <a href="#"
-                            onclick="modal('{{ get_phrase('Create a new thread') }}', '{{ route(get_current_user_role() . '.message.message_new') }}')"
-                            class="btn ol-btn-light ol-icon-btn ol-icon-btn-sm">
+                        <a href="#" onclick="modal('{{ get_phrase('Create a new thread') }}', '{{ route(get_current_user_role() . '.message.message_new') }}')" class="btn ol-btn-light ol-icon-btn ol-icon-btn-sm">
                             <span class="fi-rr-plus"></span>
                         </a>
                     </div>
@@ -21,8 +19,7 @@
                     <form action="">
                         <div class="message-sidebar-search">
                             <label for="message-sideSearch" class="form-label sideSearch-label">
-                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M9.58464 18.7918C4.8763 18.7918 1.04297 14.9584 1.04297 10.2501C1.04297 5.54175 4.8763 1.70842 9.58464 1.70842C14.293 1.70842 18.1263 5.54175 18.1263 10.2501C18.1263 14.9584 14.293 18.7918 9.58464 18.7918ZM9.58464 2.95842C5.55964 2.95842 2.29297 6.23342 2.29297 10.2501C2.29297 14.2668 5.55964 17.5418 9.58464 17.5418C13.6096 17.5418 16.8763 14.2668 16.8763 10.2501C16.8763 6.23342 13.6096 2.95842 9.58464 2.95842Z"
                                         fill="#4B5675"></path>
@@ -31,9 +28,8 @@
                                         fill="#4B5675"></path>
                                 </svg>
                             </label>
-                            <input type="search" class="form-control"
-                                onkeyup="loadView('{{ route(get_current_user_role() . '.message.message_left_side_bar') }}?thread_code={{ $thread_code ? $thread_code : '' }}&search='+$(this).val(), '#message-user-list')"
-                                id="message-sideSearch" placeholder="{{ get_phrase('Search Here') }}">
+                            <input type="search" class="form-control" onkeyup="loadView('{{ route(get_current_user_role() . '.message.message_left_side_bar') }}?thread_code={{ $thread_code ? $thread_code : '' }}&search='+$(this).val(), '#message-user-list')" id="message-sideSearch"
+                                placeholder="{{ get_phrase('Search Here') }}">
                             <button type="submit" hidden=""></button>
                         </div>
                     </form>

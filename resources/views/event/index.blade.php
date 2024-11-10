@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@push('title', get_phrase('Events'))
 
 @section('content')
     <div class="ol-card radius-8px print-d-none">
@@ -29,6 +30,7 @@
 
 @push('js')
     <script>
+        "use strict";
         $(document).ready(function() {
             let getEvents = @json($events);
             var calendarEl = $('#calendar')[0];

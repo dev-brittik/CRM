@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Models\RolePermission;
 
 class RolePermissionController extends Controller

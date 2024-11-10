@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    "use strict";
     $(document).ready(function() {
         // select2
         if ($('select.ol-select2:not(.inited)').length) {
@@ -7,7 +8,7 @@
         }
 
         // datatable
-        if ($('#datatable:not(.inited)').length) {
+        if (!$.fn.dataTable.isDataTable('#datatable')) {
             var table = new DataTable('#datatable', {
                 buttons: [],
                 layout: {
@@ -18,7 +19,7 @@
             $('#dt-search-0').attr('placeholder', 'Search');
             $('#table-action-btns').removeClass('d-none');
             $('.dt-layout-row').find('.dt-buttons').prepend($('#table-action-btns'));
-            $('#datatable:not(.inited)').addClass('inited');
+            $('#datatable').addClass('inited');
             $('#spinnner-before-table').addClass('d-none');
             $('.table-responsive').removeClass('d-none');
         }
@@ -34,40 +35,6 @@
             $('.icon-picker:not(.inited)').iconpicker();
             $('.icon-picker:not(.inited)').addClass('inited');
         }
-
-        //Select 2
-        // if ($('#ajaxModal select.ol-select2:not(.inited)').length) {
-        //     $('#ajaxModal select.ol-select2:not(.inited)').select2({
-        //         dropdownParent: $('#ajaxModal')
-        //     });
-        //     $('#ajaxModal select.ol-select2:not(.inited)').addClass('inited');
-        // }
-
-        // if ($('#right-modal select.ol-select2:not(.inited)').length) {
-        //     $('#right-modal select.ol-select2:not(.inited)').select2({
-        //         dropdownParent: $('#right-modal')
-        //     });
-        //     $('#right-modal select.ol-select2:not(.inited)').addClass('inited');
-        // }
-
-        // if ($('select.ol-select2:not(.inited)').length) {
-        //     $('select.ol-select2:not(.inited)').select2();
-        //     $('select.ol-select2:not(.inited)').addClass('inited');
-        // }
-
-        // if ($('#ajaxModal select.select2:not(.inited)').length) {
-        //     $('#ajaxModal select.select2:not(.inited)').select2({
-        //         dropdownParent: $('#ajaxModal')
-        //     });
-        //     $('#ajaxModal select.select2:not(.inited)').addClass('inited');
-        // }
-
-        // if ($('#right-modal select.select2:not(.inited)').length) {
-        //     $('#right-modal select.select2:not(.inited)').select2({
-        //         dropdownParent: $('#right-modal')
-        //     });
-        //     $('#right-modal select.select2:not(.inited)').addClass('inited');
-        // }
 
         //Text editor
         if ($('.text_editor:not(.inited)').length) {
@@ -120,6 +87,3 @@
         }
     });
 </script>
-
-
-<script></script>

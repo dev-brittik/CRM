@@ -32,7 +32,6 @@ class FileController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            // 'file'  => 'required|file|max:3072',
         ]);
 
         if ($validator->fails()) {
@@ -43,12 +42,12 @@ class FileController extends Controller
 
         $file = $request->file('file');
 
-        $data['project_id'] = htmlspecialchars($request->project_id);
+        $data['project_id'] = $request->project_id;
         $data['user_id']    = Auth::user()->id;
-        $data['title']      = htmlspecialchars($request->title);
+        $data['title']      = $request->title;
         $data['extension']  = $file->getClientOriginalExtension();
         $data['size']       = round(($file->getSize() / 1048576), 2);
-        $data['file']       = FileUploader::upload($file, 'file');
+        $data['file']       = FileUploader::upload($file, 'project_file');
 
         File::insert($data);
         return response()->json([
@@ -58,7 +57,20 @@ class FileController extends Controller
 
     public function delete($id)
     {
+        $file_record = File::find($id);
+
+        if (!$file_record) {
+            return response()->json([
+                'error' => 'File record not found.',
+            ], 404);
+        }
+        $file_path = public_path($file_record->file);
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+        $file_record->delete();
         File::where('id', $id)->delete();
+
         return response()->json([
             'success' => 'File has been deleted.',
         ]);
@@ -72,10 +84,30 @@ class FileController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $file        = $request->file('file');
+        $file_record = File::find($id);
 
-        $project['title'] = htmlspecialchars($request->title);
+        if (!$file_record) {
+            return response()->json([
+                'error' => 'File record not found.',
+            ], 404);
+        }
 
-        File::where('id', $request->id)->update($project);
+        $data['title'] = $request->title;
+
+        if ($file) {
+            $oldFilePath = public_path($file_record->file);
+
+            if (file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+
+            $data['extension'] = $file->getClientOriginalExtension();
+            $data['size']      = round(($file->getSize() / 1048576), 2);
+            $data['file']      = FileUploader::upload($file, 'project_file');
+        }
+
+        $file_record->update($data);
 
         return response()->json([
             'success' => 'File has been updated.',

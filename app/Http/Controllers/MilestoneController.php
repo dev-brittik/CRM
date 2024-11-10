@@ -36,9 +36,9 @@ class MilestoneController extends Controller
             ]);
         }
 
-        $data['project_id']  = htmlspecialchars($request->project_id);
-        $data['title']       = htmlspecialchars($request->title);
-        $data['description'] = htmlspecialchars($request->description);
+        $data['project_id']  = $request->project_id;
+        $data['title']       = $request->title;
+        $data['description'] = $request->description;
         $data['tasks']       = json_encode($request->tasks);
 
         Milestone::insert($data);
@@ -64,7 +64,7 @@ class MilestoneController extends Controller
     public function update(Request $request, $id)
     {
 
-        $project['title'] = htmlspecialchars($request->title);
+        $project['title'] = $request->title;
 
         Milestone::where('id', $request->id)->update($project);
 

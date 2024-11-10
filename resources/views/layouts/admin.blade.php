@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('assets/upload/favicon/favicon-1716465915.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" />
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/bootstrap/bootstrap.min.css') }}" />

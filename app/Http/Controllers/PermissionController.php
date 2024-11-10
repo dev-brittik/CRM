@@ -34,8 +34,8 @@ class PermissionController extends Controller
             ]);
         }
 
-        $data['title'] = htmlspecialchars($request->title);
-        $data['route'] = htmlspecialchars($request->route);
+        $data['title'] = $request->title;
+        $data['route'] = $request->route;
 
         Permission::insert($data);
         return response()->json([
@@ -60,8 +60,8 @@ class PermissionController extends Controller
     public function update(Request $request, $id)
     {
 
-        $data['title'] = htmlspecialchars($request->title);
-        $data['route'] = htmlspecialchars($request->route);
+        $data['title'] = $request->title;
+        $data['route'] = $request->route;
 
         Permission::where('id', $request->id)->update($data);
 

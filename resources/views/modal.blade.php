@@ -22,6 +22,8 @@
     </div>
 </div>
 <script>
+    "use strict";
+
     function modal(title = '', url = '', size = 'modal-md') {
 
         // load the spinner on every open
@@ -56,6 +58,8 @@
     <div class="offcanvas-body pt-2"></div>
 </div>
 <script>
+    "use strict";
+
     function rightCanvas(url, title, position = '') {
         let spinner = $('.placeholder-spinner').html();
         let offcanvasBody = $('.global .offcanvas-body').empty().append(spinner);
@@ -93,7 +97,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn ol-btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn ol-btn-secondary" data-bs-dismiss="modal">{{ get_phrase('Close') }}</button>
             </div>
         </div>
     </div>
@@ -127,6 +131,8 @@
     </div>
 </div>
 <script>
+    "use strict";
+
     function confirmModal(url, elem = false, actionType = null, content = null) {
         $("#confirmModal").modal('show');
 
@@ -175,6 +181,8 @@
     </div>
 </div>
 <script>
+    "use strict";
+
     function multiDelete(url, project_codes) {
         $("#multiDelete").modal('show');
 

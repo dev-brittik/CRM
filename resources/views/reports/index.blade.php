@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@push('title', 'Reports')
+
 @php
     $start_date = strtotime('first day of this month');
     $end_date = strtotime('last day of this month');
@@ -11,8 +13,7 @@
                     <i class="fi-rr-settings-sliders me-2"></i>
                     {{ get_phrase('Manage') }}
                 </h4>
-                <button onclick="rightCanvas('{{ route(get_current_user_role() . '.project.create') }}', 'Create project')"
-                    class="btn ol-btn-outline-secondary d-flex align-items-center cg-10px">
+                <button onclick="rightCanvas('{{ route(get_current_user_role() . '.project.create') }}', 'Create project')" class="btn ol-btn-outline-secondary d-flex align-items-center cg-10px">
                     <span class="fi-rr-plus"></span>
                     <span>{{ get_phrase('Add new') }}</span>
                 </button>
@@ -35,13 +36,10 @@
                                 </button>
                                 <ul class="dropdown-list">
                                     <li>
-                                        <a class="dropdown-item export-btn" href="#"
-                                            onclick="downloadPDF('.print-table', 'course-list')"><i
-                                                class="fi-rr-file-pdf"></i> PDF</a>
+                                        <a class="dropdown-item export-btn" href="#" onclick="downloadPDF('.print-table', 'course-list')"><i class="fi-rr-file-pdf"></i> PDF</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item export-btn" href="#" onclick="window.print();"><i
-                                                class="fi-rr-print"></i>
+                                        <a class="dropdown-item export-btn" href="#" onclick="window.print();"><i class="fi-rr-print"></i>
                                             Print</a>
                                     </li>
                                 </ul>
@@ -59,9 +57,7 @@
                                             <div class="filter-option d-flex flex-column gap-3">
                                                 <div>
                                                     <label for="eDataList" class="form-label ol-form-label">Category</label>
-                                                    <select
-                                                        class="form-control ol-form-control ol-select2 select2-hidden-accessible"
-                                                        name="category">
+                                                    <select class="form-control ol-form-control ol-select2 select2-hidden-accessible" name="category">
                                                         <option value="yoga">Yoga</option>
                                                         <option value="vinyasa-yoga">--Vinyasa yoga
                                                         </option>
@@ -72,8 +68,7 @@
                                                 </div>
                                                 <div>
                                                     <label for="eDataList" class="form-label ol-form-label">Status</label>
-                                                    <select
-                                                        class="form-control ol-form-control ol-select2 select2-hidden-accessible">
+                                                    <select class="form-control ol-form-control ol-select2 select2-hidden-accessible">
                                                         <option value="active">Active </option>
                                                         <option value="inactive">Inactive </option>
                                                         <option value="pending">Pending </option>
@@ -84,18 +79,15 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="eDataList"
-                                                        class="form-label ol-form-label">Instructor</label>
-                                                    <select
-                                                        class="form-control ol-form-control ol-select2 select2-hidden-accessible">
+                                                    <label for="eDataList" class="form-label ol-form-label">Instructor</label>
+                                                    <select class="form-control ol-form-control ol-select2 select2-hidden-accessible">
                                                         <option value="1"> John Doe </option>
                                                         <option value="2">James Mariyati</option>
                                                     </select>
                                                 </div>
                                                 <div>
                                                     <label for="eDataList" class="form-label ol-form-label">Price</label>
-                                                    <select
-                                                        class="form-control ol-form-control ol-select2 select2-hidden-accessible">
+                                                    <select class="form-control ol-form-control ol-select2 select2-hidden-accessible">
                                                         <option value="free">Free</option>
                                                         <option value="paid">Paid</option>
                                                     </select>

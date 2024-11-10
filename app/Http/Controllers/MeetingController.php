@@ -42,9 +42,9 @@ class MeetingController extends Controller
             ]);
         }
 
-        $data['project_id']        = htmlspecialchars($request->project_id);
-        $data['title']             = htmlspecialchars($request->title);
-        $data['timestamp_meeting'] = htmlspecialchars($request->timestamp_meeting);
+        $data['project_id']        = $request->project_id;
+        $data['title']             = $request->title;
+        $data['timestamp_meeting'] = $request->timestamp_meeting;
 
         $joiningData    = ZoomMeetingController::createMeeting($request->title, $data['timestamp_meeting']);
         $joiningInfoArr = json_decode($joiningData, true);
@@ -112,8 +112,8 @@ class MeetingController extends Controller
             return redirect()->back();
         }
 
-        $data['title']             = htmlspecialchars($request->title);
-        $data['timestamp_meeting'] = htmlspecialchars($request->timestamp_meeting);
+        $data['title']             = $request->title;
+        $data['timestamp_meeting'] = $request->timestamp_meeting;
 
         if ($meeting->provider == 'zoom') {
             $oldMeetingData = json_decode($meeting->joining_data, true);

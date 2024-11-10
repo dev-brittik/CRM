@@ -34,10 +34,10 @@ class PaymentController extends Controller
             ]);
         }
 
-        $data['project_id'] = htmlspecialchars($request->project_id);
+        $data['project_id'] = $request->project_id;
         $data['user_id']    = Auth::user()->id;
-        $data['title']      = htmlspecialchars($request->title);
-        $data['payment']    = htmlspecialchars($request->payment);
+        $data['title']      = $request->title;
+        $data['payment']    = $request->payment;
 
         Payment::insert($data);
         return response()->json([
@@ -61,8 +61,8 @@ class PaymentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data['title']   = htmlspecialchars($request->title);
-        $data['payment'] = htmlspecialchars($request->payment);
+        $data['title']   = $request->title;
+        $data['payment'] = $request->payment;
 
         Payment::where('id', $request->id)->update($data);
 

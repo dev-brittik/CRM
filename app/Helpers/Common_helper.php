@@ -48,8 +48,75 @@ if (!function_exists('get_user')) {
 if (!function_exists('get_user_info')) {
     function get_user_info($user_id = "")
     {
-        $user_info = App\Models\User::where('id', $user_id)->firstOrNew();
+        $user_info = User::where('id', $user_id)->firstOrNew();
         return $user_info;
+    }
+}
+
+if (!function_exists('get_image')) {
+    function get_image($url = null, $optimized = false)
+    {
+        if ($url == null) {
+            return asset('uploads/system/placeholder.png');
+        }
+
+        // If the value of URL is from an online URL
+        if (str_contains($url, 'http://') && str_contains($url, 'https://')) {
+            return $url;
+        }
+
+        $url_arr = explode('/', $url);
+        // File name & Folder path
+        $file_name = end($url_arr);
+        $path      = str_replace($file_name, '', $url);
+
+        //Optimized image url
+        $optimized_image = $path . 'optimized/' . $file_name;
+
+        if (!$optimized) {
+            if (is_file(public_path($url)) && file_exists(public_path($url))) {
+                return asset($url);
+            } else {
+                return asset($path . 'placeholder/placeholder.png');
+            }
+        } else {
+            if (is_file(public_path($optimized_image)) && file_exists(public_path($optimized_image))) {
+                return asset($optimized_image);
+            } else {
+                return asset($path . 'placeholder/placeholder.png');
+            }
+        }
+    }
+}
+
+if (!function_exists('removeScripts')) {
+    function removeScripts($text)
+    {
+        if (!$text) {
+            return;
+        }
+
+        // Remove <script> tags and their content
+        $pattern_script = '/<script\b[^<](?:(?!</script>)<[^<])</script>/is';
+        $cleanText      = preg_replace($pattern_script, '', $text);
+
+        // Remove inline event handlers (e.g., onclick, onmouseover)
+        $pattern_inline = '/\son\w+="[^"]"/i';
+        $cleanText      = preg_replace($pattern_inline, '', $cleanText);
+
+        // Remove JavaScript: URIs
+        $pattern_js_uri = '/\shref="javascript:[^"]"/i';
+        $cleanText      = preg_replace($pattern_js_uri, '', $cleanText);
+
+        // Remove other potentially dangerous tags (e.g., <iframe>, <object>, <embed>)
+        $pattern_dangerous_tags = '/<(iframe|object|embed|applet|meta|link|style|base|form)\b[^<](?:(?!</\1>)<[^<])</\1>/is';
+        $cleanText              = preg_replace($pattern_dangerous_tags, '', $cleanText);
+
+        // Remove any remaining dangerous attributes (e.g., srcset on <img>)
+        $pattern_dangerous_attributes = '/\s(src|srcset|data)="[^"]"/i';
+        $cleanText                    = preg_replace($pattern_dangerous_attributes, '', $cleanText);
+
+        return $cleanText;
     }
 }
 

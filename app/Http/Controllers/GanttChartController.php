@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GanttChart;
-use App\Models\Task;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GanttChartController extends Controller

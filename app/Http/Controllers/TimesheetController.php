@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Timesheet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class TimesheetController extends Controller
@@ -34,9 +35,9 @@ class TimesheetController extends Controller
             ]);
         }
 
-        $data['project_id']      = htmlspecialchars($request->project_id);
-        $data['user_id']         = htmlspecialchars($request->project_id);
-        $data['title']           = htmlspecialchars($request->title);
+        $data['project_id']      = $request->project_id;
+        $data['user_id']         = Auth::user()->id;
+        $data['title']           = $request->title;
         $data['timestamp_start'] = $request->timestamp_start;
         $data['timestamp_end']   = $request->timestamp_end;
 
@@ -62,7 +63,7 @@ class TimesheetController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data['title']           = htmlspecialchars($request->title);
+        $data['title']           = $request->title;
         $data['timestamp_start'] = $request->timestamp_start;
         $data['timestamp_end']   = $request->timestamp_end;
 

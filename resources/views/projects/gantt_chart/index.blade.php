@@ -1,3 +1,4 @@
+@push('title', get_phrase('Gantt Chart'))
 @php
     $tasks = DB::table('project_tasks')->get();
 @endphp
@@ -6,6 +7,7 @@
 
 @push('js')
     <script type="text/javascript">
+        "use strict";
         google.charts.load('current', {
             'packages': ['gantt']
         });

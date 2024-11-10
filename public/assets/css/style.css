@@ -4721,8 +4721,8 @@ input.daterangepicker {
 }
 
 .ol-btn-danger:hover {
-    background-color: var(--danger-normal);
-    color: var(--gray-light-2);
+    background: #e82d4e;
+    color: var(--white-color);
 }
 
 .ol-btn-success {
@@ -5852,4 +5852,42 @@ div.dt-container .dt-search input:hover {
     color: var(--text-color);
     cursor: pointer;
     background: var(--card-background-color);
+}
+
+div.dt-container .dt-paging .dt-paging-button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #6b708a;
+    border-radius: 6px;
+    border: none;
+    background: #f7f7f9;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+    border: none;
+    color: white !important;
+    background: #1b84ff;
+}
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+    color: #ffffff !important;
+    border: none;
+    background: #1b84ff;
+}
+div.dt-container .dt-paging .dt-paging-button.next,
+div.dt-container .dt-paging .dt-paging-button.last,
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+div.dt-container .dt-paging .dt-paging-button.disabled:active {
+    cursor: default;
+    color: #6b708a !important;
+    border: none;
+    background: #f7f7f9;
+    box-shadow: none;
 }

@@ -32,9 +32,9 @@ class EventController extends Controller
                 'validationError' => $validator->getMessageBag()->toArray(),
             ]);
         }
-        $data['title']      = htmlspecialchars($request->title);
-        $data['start_date'] = htmlspecialchars($request->start_date);
-        $data['end_date']   = htmlspecialchars($request->end_date);
+        $data['title']      = $request->title;
+        $data['start_date'] = $request->start_date;
+        $data['end_date']   = $request->end_date;
 
         Event::insert($data);
         return response()->json([
@@ -57,9 +57,9 @@ class EventController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $data['title']      = htmlspecialchars($request->title);
-        $data['start_date'] = htmlspecialchars($request->start_date);
-        $data['end_date']   = htmlspecialchars($request->end_date);
+        $data['title']      = $request->title;
+        $data['start_date'] = $request->start_date;
+        $data['end_date']   = $request->end_date;
         Event::where('id', $request->id)->update($data);
 
         return response()->json([
